@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Payment.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">paymentCalculator</a> &gt; <a href="index.source.html" class="el_package">com.assignment.retail.paymentCalculator</a> &gt; <span class="el_source">Payment.java</span></div><h1>Payment.java</h1><pre class="source lang-java linenums">package com.assignment.retail.paymentCalculator;
+
+import com.assignment.retail.paymentCalculator.beans.DiscountDetails;
+import com.assignment.retail.paymentCalculator.beans.PaymentDetails;
+import com.assignment.retail.paymentCalculator.handlers.AffiliateDiscountHandler;
+import com.assignment.retail.paymentCalculator.handlers.EmployeeDiscountHandler;
+import com.assignment.retail.paymentCalculator.handlers.OldCustomerDiscountHandler;
+import com.assignment.retail.paymentCalculator.handlers.PriceDiscountHandler;
+import com.assignment.retail.paymentCalculator.util.Const;
+
+public class Payment {
+
+<span class="fc" id="L13">	private EmployeeDiscountHandler employeeDiscountHandler = new EmployeeDiscountHandler();</span>
+<span class="fc" id="L14">	private AffiliateDiscountHandler affiliateDiscountHandler = new AffiliateDiscountHandler();</span>
+<span class="fc" id="L15">	private OldCustomerDiscountHandler oldCustomerDiscountHandler = new OldCustomerDiscountHandler();</span>
+<span class="fc" id="L16">	private PriceDiscountHandler priceDiscountHandler = new PriceDiscountHandler();</span>
+
+	/*
+	 * Various discount request handlers.
+	 * their chaining as per the discount %age.
+	 */
+<span class="fc" id="L22">	public Payment() {</span>
+<span class="fc" id="L23">		employeeDiscountHandler.nextDiscountHandler(affiliateDiscountHandler);</span>
+<span class="fc" id="L24">		affiliateDiscountHandler.nextDiscountHandler(oldCustomerDiscountHandler);</span>
+<span class="fc" id="L25">		oldCustomerDiscountHandler.nextDiscountHandler(priceDiscountHandler);</span>
+<span class="fc" id="L26">	}</span>
+	
+	public DiscountDetails calculate(PaymentDetails paymentDetails){
+		/*
+		 * check if bought products are grocery.
+		 * If yes no other % discount is applicable just provide default price discount if applicable*/
+		DiscountDetails discountDetails;
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">		if(paymentDetails.getIsGrocerry().equals(Const.NO)){</span>
+<span class="fc" id="L34">			discountDetails = employeeDiscountHandler.applyDiscount(paymentDetails);</span>
+		}else{
+<span class="nc" id="L36">			discountDetails = priceDiscountHandler.applyDiscount(paymentDetails);</span>
+		}
+<span class="fc" id="L38">		return discountDetails;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

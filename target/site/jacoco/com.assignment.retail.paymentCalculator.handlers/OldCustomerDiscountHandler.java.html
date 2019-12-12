@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>OldCustomerDiscountHandler.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">paymentCalculator</a> &gt; <a href="index.source.html" class="el_package">com.assignment.retail.paymentCalculator.handlers</a> &gt; <span class="el_source">OldCustomerDiscountHandler.java</span></div><h1>OldCustomerDiscountHandler.java</h1><pre class="source lang-java linenums">package com.assignment.retail.paymentCalculator.handlers;
+
+import com.assignment.retail.paymentCalculator.beans.DiscountDetails;
+import com.assignment.retail.paymentCalculator.beans.PaymentDetails;
+import com.assignment.retail.paymentCalculator.util.CalculateDiscount;
+import com.assignment.retail.paymentCalculator.util.Const;
+
+<span class="fc" id="L8">public class OldCustomerDiscountHandler extends DiscountHandler implements VerifyDiscount{</span>
+	/*
+	 * check if old customer discount is applicable or not.
+	 * If applicable, get discounted amount, else pass the request to other price discount handler (price discount).
+	 * */
+	@Override
+	public DiscountDetails applyDiscount(PaymentDetails paymentDetails) {
+<span class="pc bpc" id="L15" title="1 of 2 branches missed.">		if(!isDiscountApplicable(paymentDetails)){</span>
+<span class="nc" id="L16">			discountHandler.applyDiscount(paymentDetails);</span>
+		}else{
+<span class="fc" id="L18">			discountDetails.setDiscountType(&quot;Eligible for old customer discount (5%).&quot;);</span>
+<span class="fc" id="L19">			discountDetails.setFinalAmount(CalculateDiscount.getDiscountPrice(Const.EMPLOYEE_DISCOUNT, paymentDetails.getAmount()));</span>
+			//System.out.println(&quot;Eligible for old customer discount (5%).&quot;);
+			//System.out.println(&quot;Payable Amt.: &quot;+CalculateDiscount.getDiscountPrice(Const.OLD_CUSTOMER_DISCOUNT, paymentDetails.getAmount()));
+		}
+<span class="fc" id="L23">		return discountDetails;</span>
+	}
+
+	@Override
+	public boolean isDiscountApplicable(PaymentDetails paymentDetails) {
+<span class="fc" id="L28">		boolean isOldCustomer = false;</span>
+<span class="fc bfc" id="L29" title="All 2 branches covered.">		if(paymentDetails.getOldCustomer().equals(Const.YES)){</span>
+<span class="fc" id="L30">			isOldCustomer = true;</span>
+		}
+<span class="fc" id="L32">		return isOldCustomer;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.2.201808211720</span></div></body></html>

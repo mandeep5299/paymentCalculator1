@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+paymentCalculator,com.assignment.retail.paymentCalculator,Payment,5,51,1,1,1,12,1,2,0,2
+paymentCalculator,com.assignment.retail.paymentCalculator,PaymentCalculator,119,0,14,0,28,0,11,0,4,0
+paymentCalculator,com.assignment.retail.paymentCalculator.handlers,AffiliateDiscountHandler,6,32,1,3,1,9,1,4,0,3
+paymentCalculator,com.assignment.retail.paymentCalculator.handlers,OldCustomerDiscountHandler,6,32,1,3,1,9,1,4,0,3
+paymentCalculator,com.assignment.retail.paymentCalculator.handlers,DiscountHandler,0,12,0,0,0,4,0,2,0,2
+paymentCalculator,com.assignment.retail.paymentCalculator.handlers,PriceDiscountHandler,10,31,1,3,2,9,1,4,0,3
+paymentCalculator,com.assignment.retail.paymentCalculator.handlers,EmployeeDiscountHandler,6,32,1,3,1,9,1,4,0,3
+paymentCalculator,com.assignment.retail.paymentCalculator.beans,PaymentDetails,0,33,0,0,0,12,0,6,0,6
+paymentCalculator,com.assignment.retail.paymentCalculator.beans,DiscountDetails,3,14,0,0,1,6,1,4,1,4
+paymentCalculator,com.assignment.retail.paymentCalculator.util,CalculateDiscount,5,26,1,1,2,4,2,2,1,2
